@@ -1,0 +1,627 @@
+<!doctype html>
+<html lang="uz">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#101323">
+<meta name="description" content="DailyFit AI — Atom odatlar, sport va kunlik rejalaringiz.">
+<title>DailyFit AI — Atom Odatlar va Sog‘lom Hayot</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='18' fill='%237b8cff'/%3E%3Ctext x='32' y='44' font-size='34' text-anchor='middle' fill='%23101323'%3E✦%3C/text%3E%3C/svg%3E">
+<style>
+:root{--bg:#0d1020;--panel:#171b30;--panel2:#1e2440;--line:#2b3150;--text:#f4f6ff;--muted:#9ba5c5;--blue:#7b8cff;--cyan:#5ce1d3;--green:#8ce3a0}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(ellipse at 10% 0%,#20284d 0,transparent 38%),var(--bg);color:var(--text);font:15px/1.5 Inter,system-ui,-apple-system,Segoe UI,sans-serif;padding-bottom:80px}
+button,input,select{font:inherit}button{cursor:pointer}
+button:focus-visible,input:focus-visible,select:focus-visible{outline:2px solid var(--cyan);outline-offset:2px}
+.shell{max-width:1180px;margin:auto;padding:24px}
+.top{display:flex;justify-content:space-between;align-items:center;gap:16px;margin-bottom:28px}
+.brand{display:flex;gap:12px;align-items:center;cursor:pointer;background:none;border:0;color:inherit;text-align:left;padding:0}
+.logo{width:46px;height:46px;border-radius:15px;background:linear-gradient(135deg,var(--blue),var(--cyan));display:grid;place-items:center;color:#101323;font-size:24px;font-weight:900;box-shadow:0 8px 28px #7b8cff35}
+.brand h1{font-size:20px;margin:0;letter-spacing:-.5px}.brand p{margin:2px 0 0;color:var(--muted);font-size:12px}
+.pills{display:flex;gap:8px;flex-wrap:wrap;justify-content:flex-end}
+.pill{border:1px solid var(--line);background:#171b30;color:#c7d0ee;border-radius:999px;padding:8px 13px;font-size:12px}
+.hero{display:flex;justify-content:space-between;align-items:center;gap:24px;padding:28px;border:1px solid #333b60;border-radius:26px;background:linear-gradient(115deg,#22294a,#171b30 68%);margin-bottom:20px;overflow:hidden}
+.eyebrow{color:var(--cyan);font-weight:700;font-size:12px;letter-spacing:1.5px;text-transform:uppercase}
+.hero h2{font-size:clamp(25px,4vw,38px);line-height:1.12;letter-spacing:-1.2px;margin:9px 0 12px;max-width:600px}
+.hero p{color:#b5bfdf;margin:0;max-width:570px}.hero-icon{font-size:80px;filter:drop-shadow(0 12px 22px #5ce1d344)}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:20px}
+.stat,.card{background:rgba(23,27,48,.92);border:1px solid var(--line);border-radius:20px;padding:19px}
+.stat-top{display:flex;justify-content:space-between;color:var(--muted);font-size:12px}.emoji{font-size:20px}
+.number{font-size:28px;font-weight:800;margin:9px 0 1px;letter-spacing:-1px}.small{font-size:12px;color:var(--muted)}
+.layout{display:grid;grid-template-columns:1.15fr .85fr;gap:16px;align-items:start}.card{margin-bottom:16px}
+.card-head{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:16px}.card h3{margin:0;font-size:16px}
+.item{display:flex;align-items:center;gap:12px;padding:12px 0;border-bottom:1px solid #292f4b}.item:last-child{border-bottom:0;padding-bottom:0}
+.check{width:23px;height:23px;flex-shrink:0;border:1px solid #596386;border-radius:8px;background:transparent;color:#11182b;font-weight:900}
+.check.done{background:var(--green);border-color:var(--green)}.item-main{flex:1;min-width:0}.item-main b{font-size:13px;display:block;overflow-wrap:anywhere}.item-main small{color:var(--muted);font-size:12px}
+.tag{font-size:11px;color:var(--cyan);background:#5ce1d315;padding:5px 8px;border-radius:8px}
+.del{border:0;background:transparent;color:var(--muted);font-size:16px}
+.primary{border:0;background:linear-gradient(135deg,var(--blue),#8b9aff);color:#0d1020;font-weight:800;border-radius:11px;padding:10px 13px}
+.secondary{border:1px solid var(--line);background:var(--panel2);color:var(--text);border-radius:11px;padding:9px 12px}
+.secondary:disabled{opacity:.4;cursor:not-allowed}
+.row{display:flex;gap:8px}.row input,.row select{min-width:0;flex:1;background:#101427;border:1px solid var(--line);border-radius:11px;padding:10px 12px;color:var(--text)}
+.box{background:#101427;padding:12px;border-radius:14px;border:1px solid var(--line)}
+.box input,.box select{width:100%;background:#171b30;border:1px solid var(--line);padding:6px;border-radius:8px;color:#fff}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:12px}
+.waterline{display:flex;align-items:center;justify-content:space-between;gap:14px;padding:12px;background:#101427;border:1px solid var(--line);border-radius:15px}.waterline strong{font-size:20px}
+.progress{height:7px;background:#303653;border-radius:99px;overflow:hidden;margin:13px 0}.progress span{display:block;height:100%;background:linear-gradient(90deg,var(--blue),var(--cyan));border-radius:99px;width:0;transition:width .25s}
+.advice{background:linear-gradient(135deg,#23284a,#182b3a);border:1px solid #394768;border-radius:16px;padding:16px;color:#dce5ff}.advice b{display:block;margin-bottom:6px}
+.nav{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:18px}.nav button{border:1px solid var(--line);background:#171b30;color:#aab4d4;border-radius:12px;padding:10px 14px}
+.nav button.active{background:#293256;border-color:#6576c9;color:#fff}
+.bottom-nav{position:fixed;bottom:0;left:0;right:0;background:#13172cfa;backdrop-filter:blur(10px);border-top:1px solid var(--line);display:flex;justify-content:space-around;padding:10px;z-index:99}
+.bottom-nav button{background:transparent;border:0;color:var(--muted);display:flex;flex-direction:column;align-items:center;gap:3px;font-size:11px}
+.bottom-nav button.active{color:var(--cyan)}
+.modal{position:fixed;inset:0;background:rgba(0,0,0,.7);display:none;place-items:center;z-index:100;padding:20px}
+.modal-box{background:#171b30;border:1px solid var(--line);border-radius:24px;padding:24px;width:100%;max-width:420px}
+.footer{text-align:center;color:#6f7899;font-size:12px;padding:20px 0}
+.toast{position:fixed;bottom:70px;left:50%;transform:translateX(-50%);background:#dfffea;color:#10291c;padding:10px 16px;border-radius:12px;display:none;z-index:101}
+.empty{color:var(--muted);font-size:13px;padding:10px 0}
+@media(max-width:800px){.shell{padding:15px}.stats{grid-template-columns:repeat(2,1fr)}.layout{grid-template-columns:1fr}.hero{padding:22px}.hero-icon{display:none}.nav{display:none}}
+@media(prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+<main class="shell">
+  <header class="top">
+    <button class="brand" id="openProfile" aria-label="Profilni ochish">
+      <div class="logo">✦</div>
+      <div><h1>DailyFit <span style="color:var(--cyan)">AI</span></h1><p>Atom odatlar tizimi</p></div>
+    </button>
+    <div class="pills"><span class="pill" id="streak">🔥 0 kun</span><button class="pill" id="soundBtn" aria-label="Ovozni yoqish yoki o‘chirish">🔊</button><span class="pill" id="today"></span></div>
+  </header>
+
+  <section class="hero">
+    <div>
+      <div class="eyebrow">✦ James Clear · Atom Odatlar</div>
+      <h2>Kichik o‘zgarishlar. <span style="color:var(--cyan)">Katta natijalar.</span></h2>
+      <p>1% yaxshilanish qoidasi va 4 ta oltin qonun yordamida shaxsiy intizomni shakllantiring.</p>
+    </div>
+    <div class="hero-icon">⚡</div>
+  </section>
+
+  <nav class="nav">
+    <button class="active" data-tab="all">⌂ Umumiy</button>
+    <button data-tab="habits">✓ Odatlar</button>
+    <button data-tab="workouts">♧ Mashqlar</button>
+    <button data-tab="tools">⚙ Qo‘shimcha</button>
+    <button data-tab="advisor">✧ AI maslahatchi</button>
+    <button data-tab="book">📖 Kitob</button>
+    <button data-tab="psych">🧠 Psixologiya</button>
+  </nav>
+
+  <section class="stats">
+    <div class="stat"><div class="stat-top"><span>Odatlar</span><span class="emoji">✓</span></div><div class="number" id="habitStat">0/4</div><div class="small">atom odatlar</div></div>
+    <div class="stat"><div class="stat-top"><span>Mashg‘ulot</span><span class="emoji">♧</span></div><div class="number" id="workStat">0/3</div><div class="small">faol harakat</div></div>
+    <div class="stat"><div class="stat-top"><span>Suv ichish</span><span class="emoji">💧</span></div><div class="number" id="waterStat">0</div><div class="small">stakan / 8 maqsad</div></div>
+    <div class="stat"><div class="stat-top"><span>Umumiy</span><span class="emoji">⚡</span></div><div class="number" id="percentStat">0%</div><div class="small">bajarilish darajasi</div></div>
+  </section>
+
+  <div class="layout">
+    <div>
+      <section class="card" data-sec="habits">
+        <div class="card-head"><h3>✓ Atom Odatlar (4 Qoida)</h3><span id="habitCount">0 / 4</span></div>
+        <div id="habits"></div>
+        <div class="progress"><span id="habitProgress"></span></div>
+        <div class="small">1. Aniq qiling · 2. Jozibali qiling · 3. Oson qiling · 4. Qoniqarli qiling</div>
+      </section>
+
+      <section class="card" data-sec="workouts">
+        <div class="card-head"><h3>♧ Kunlik Fitnes & Harakat</h3><span id="workCount">0 / 3</span></div>
+        <div id="workouts"></div>
+        <div class="progress"><span id="workProgress"></span></div>
+      </section>
+
+      <section class="card" data-sec="tools">
+        <div class="card-head"><h3>⚙ Qo‘shimcha asboblar</h3><span class="tag">Hayot tarzi</span></div>
+        <div class="grid2">
+          <div class="box">
+            <b>💤 Uyqu nazorati</b>
+            <div class="row" style="margin-top:8px"><input type="time" id="bedT" value="23:00" aria-label="Yotish vaqti"><input type="time" id="wakeT" value="06:00" aria-label="Turish vaqti"></div>
+            <div class="row" style="margin-top:8px">
+              <input type="number" id="sleepInput" placeholder="Soat" min="0" max="14" step="0.5" aria-label="Uyqu soati">
+              <button class="primary" id="saveSleep">Saqlash</button>
+            </div>
+            <small id="sleepInfo" class="small" style="display:block;margin-top:6px"></small>
+            <div id="sleepHist" class="small"></div>
+          </div>
+          <div class="box">
+            <b>😊 Kayfiyat</b>
+            <select id="moodSelect" style="margin-top:8px" aria-label="Kayfiyat">
+              <option>Ajoyib 🔥</option><option>Yaxshi ⚡</option><option>O‘rtacha 🌤️</option><option>Charchagan 🌙</option>
+            </select>
+          </div>
+        </div>
+        <div class="box" style="margin-bottom:12px">
+          <div style="display:flex;justify-content:space-between;align-items:center">
+            <b>🧘 Nafas olish mashqi (4-7-8)</b>
+            <button class="secondary" id="startBreath">Boshlash</button>
+          </div>
+          <div id="breathText" class="small" style="margin-top:6px">Tinchlanish uchun bosing</div>
+        </div>
+        <div class="box" style="margin-bottom:12px">
+          <div style="display:flex;justify-content:space-between;align-items:center">
+            <b>💡 Atom Iqtibos</b>
+            <button class="secondary" id="newQuote">Yangilash</button>
+          </div>
+          <div id="quoteText" class="small" style="margin-top:6px"></div>
+        </div>
+        <div class="box">
+          <b>⏰ Uyg‘otgich</b>
+          <div class="row" style="margin-top:8px"><input type="time" id="alarmT" value="06:00" aria-label="Uyg‘otgich vaqti"><button class="primary" id="alarmOn">Yoqish</button></div>
+          <div class="small" id="alarmInfo" style="margin-top:6px"></div>
+          <div class="small">Signal sahifa ochiq turganda chalinadi. Ishonchli uyg‘onish uchun telefonning soat ilovasidagi signaldan ham foydalaning.</div>
+        </div>
+        <div class="box" style="margin-top:12px">
+          <b>💾 Ma’lumotlar</b>
+          <div class="row" style="margin-top:8px;flex-wrap:wrap">
+            <button class="secondary" id="exportBtn">Eksport</button>
+            <button class="secondary" id="importBtn">Import</button>
+            <button class="secondary" id="resetBtn">Tozalash</button>
+            <input type="file" id="importFile" accept="application/json" hidden>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <div>
+      <section class="card" data-sec="workouts">
+        <div class="card-head"><h3>💧 Suv balansi (Atom Qoida #3)</h3><span>Kunlik maqsad</span></div>
+        <div class="waterline">
+          <div><div class="small">Ichilgan suv</div><strong id="waterText">0 stakan</strong></div>
+          <div class="row">
+            <button class="secondary" id="waterMinus" aria-label="Bitta kamaytirish">−</button>
+            <button class="primary" id="waterPlus">+ 1 stakan</button>
+          </div>
+        </div>
+        <div class="progress"><span id="waterProgress"></span></div>
+        <div class="small">Ish stoliga suv qo‘yish — vizual ishoradir.</div>
+      </section>
+
+      <section class="card" data-sec="habits">
+        <div class="card-head"><h3>＋ Shaxsiy Vazifalar</h3><span>2 daqiqalik qoida</span></div>
+        <form class="row" id="taskForm">
+          <input id="taskInput" maxlength="100" placeholder="Tez bajariladigan vazifa..." required>
+          <label class="tag" style="display:flex;align-items:center;gap:4px;white-space:nowrap"><input type="checkbox" id="taskDaily" style="flex:none;width:auto;min-width:0"> Har kuni</label>
+          <button class="primary" type="submit">Qo‘shish</button>
+        </form>
+        <div id="tasks" style="margin-top:12px"></div>
+      </section>
+
+      <section class="card" data-sec="advisor">
+        <div class="card-head"><h3>✧ AI Atom Maslahatchi</h3><span class="tag">James AI</span></div>
+        <div class="advice">
+          <b>Atom Odat maslahati</b>
+          <span>Odatni jozibali qilish uchun uni o‘zingiz yoqtirgan ish bilan birlashtiring.</span>
+        </div>
+        <form class="row" id="askForm" style="margin-top:12px">
+          <input id="askInput" placeholder="Masalan: odatni qanday shakllantiraman?" maxlength="180" required>
+          <button class="primary" type="submit">So‘rash</button>
+        </form>
+        <div id="answer" class="small" style="margin-top:10px" aria-live="polite"></div>
+      </section>
+    </div>
+  </div>
+
+  <section class="card" data-sec="book">
+    <style>details{background:#101427;border:1px solid var(--line);border-radius:14px;padding:12px 14px;margin-bottom:10px}summary{cursor:pointer;font-weight:700}details ul{margin:10px 0 0;padding-left:18px;color:#c3cbe6;font-size:13px}details li{margin-bottom:7px}.f{display:flex;flex-direction:column;gap:8px}.f input{background:#101427;border:1px solid var(--line);border-radius:11px;padding:10px 12px;color:var(--text);width:100%}</style>
+    <div class="card-head"><h3>📖 Atom Odatlar: asosiy g‘oyalar</h3><span class="tag">Qisqacha bayon</span></div>
+    <p class="small" style="margin:0 0 14px">Bu James Clear kitobining o‘z so‘zlarim bilan yozilgan qisqa bayoni. Kitobning o‘zi bu yerda keltirilmagan; to‘liq o‘qish uchun asl nusxadan foydalaning.</p>
+    <details open><summary>Asos: 1%, tizim va shaxsiyat</summary><ul>
+      <li>Har kuni 1% yaxshilansangiz, bir yilda taxminan 37 barobar o‘sasiz; 1% yomonlashsangiz, deyarli nolga tushasiz.</li>
+      <li>Maqsad yo‘nalishni ko‘rsatadi, natijani esa kundalik tizim beradi. Tizimingizga e’tibor bering.</li>
+      <li>Eng chuqur o‘zgarish shaxsiyatdan boshlanadi: «kitob yozaman» emas, «men yozuvchiman». Har bir odat shu shaxsiyat uchun ovozdir.</li>
+      <li>Odat sikli to‘rt bosqichdan iborat: ishora → istak → harakat → mukofot.</li></ul></details>
+    <details><summary>1-qonun: Aniq qiling (ishora)</summary><ul>
+      <li>Skorkarta: kunlik odatlaringizni yozib, har birini yaxshi, yomon yoki neytral deb belgilang. Avval ongli bo‘ling.</li>
+      <li>Niyat bayoni: «Men [vaqt]da, [joy]da [harakat] qilaman». Aniq reja irodaga bo‘lgan ehtiyojni kamaytiradi.</li>
+      <li>Odatlarni zanjirlash: yangi odatni mavjudiga ulang («qahvadan keyin 1 daqiqa meditatsiya»).</li>
+      <li>Muhit: kerakli odat ishorasi ko‘zga tushsin (stol ustida suv, yostiq yonida kitob); yomon odat ishorasini yashiring.</li></ul></details>
+    <details><summary>2-qonun: Jozibali qiling (istak)</summary><ul>
+      <li>Vasvasani bog‘lash: yoqtirgan ishingizni foydali odat bilan birga qiling.</li>
+      <li>Atrofingizni tanlang: kerakli xulq odatiy hisoblangan guruhga qo‘shiling.</li>
+      <li>Qayta talqin: «mashq qilishim kerak» o‘rniga «mashq qilish imkoniyatim bor».</li>
+      <li>Marosim: qiyin odatdan oldin kichik, yoqimli tayyorgarlik qiling.</li></ul></details>
+    <details><summary>3-qonun: Oson qiling (harakat)</summary><ul>
+      <li>Ishqalanishni kamaytiring: yo‘lni qisqartiring (sport kiyimini oldindan tayyorlab qo‘ying).</li>
+      <li>2 daqiqa qoidasi: har bir odatni 2 daqiqalik boshlanish versiyasiga qisqartiring. Muhimi, bajarish, mukammallik emas.</li>
+      <li>Takrorlash: odat vaqt bilan emas, takrorlar soni bilan shakllanadi.</li>
+      <li>Avtomatlashtirish: eslatmalar va oldindan qilingan qarorlar kelajakdagi o‘zingizni bog‘lab qo‘yadi.</li></ul></details>
+    <details><summary>4-qonun: Qoniqarli qiling (mukofot)</summary><ul>
+      <li>Darhol mukofot: kichik, odatga mos yoqimli yakun bering.</li>
+      <li>Odat treki: kunlarni belgilang va zanjirni uzmang. Bu ilovadagi 🔥 seriya shuning uchun.</li>
+      <li>Ikki marta ketma-ket o‘tkazib yubormang: bir marta o‘tkazish tasodif, ikkinchisi yangi odatning boshlanishi.</li>
+      <li>Hamjihatlik: mas’uliyat sherigi yoki odat shartnomasi yomon odatni qimmatga tushiradi.</li></ul></details>
+    <details><summary>Yomon odatni qaytarish</summary><ul>
+      <li>Qonunlarni teskari qo‘llang: ishorani ko‘rinmas, odatni jozibasiz, qiyin va qoniqarsiz qiling.</li>
+      <li>Optimal qiyinlik: vazifa eng yuqori qobiliyatingizdan biroz pastroq bo‘lsa, zerikmaysiz va charchamaysiz.</li>
+      <li>Davriy tahlil: oyiga bir marta nimalar ishlayotganini ko‘rib chiqing va tizimni sozlang.</li></ul></details>
+    <div class="card-head" style="margin:18px 0 10px"><h3>🛠 Odat quruvchi</h3><span class="small">Niyat bayoni + 2 daqiqa</span></div>
+    <div class="f">
+      <input id="identity" maxlength="60" placeholder="Shaxsiyat: men kim bo‘lmoqchiman? (masalan: sog‘lom odam)">
+      <button class="secondary" id="saveId">Shaxsiyatni saqlash</button>
+      <div class="small" id="idOut"></div>
+      <input id="bAct" maxlength="60" placeholder="2 daqiqalik odat (masalan: 1 sahifa o‘qiyman)">
+      <input id="bWhen" maxlength="40" placeholder="Qachon? (masalan: soat 21:00 da)">
+      <input id="bWhere" maxlength="40" placeholder="Qayerda? (masalan: divanda)">
+      <input id="bAfter" maxlength="50" placeholder="Qaysi odatdan keyin? (ixtiyoriy, vaqt/joy o‘rniga)">
+      <div class="advice" id="bPreview" style="min-height:20px"></div>
+      <button class="primary" id="bAdd">Odatlarimga qo‘shish</button>
+    </div>
+  </section>
+
+    <section class="card" data-sec="psych">
+    <div class="card-head"><h3>🧠 Xulq psixologiyasi</h3><span class="tag">Nazariyalar</span></div>
+    <p class="small" style="margin:0 0 14px">Quyida odat va motivatsiyani tushuntiruvchi taniqli nazariyalar qisqacha bayon qilingan. Bu ta’lim maqsadidagi ma’lumot; tibbiy yoki psixologik yordam o‘rnini bosmaydi.</p>
+    <div class="box" style="margin-bottom:14px">
+      <b>📈 Odat shakllanishi: <span id="lallyTxt"></span></b>
+      <div class="progress"><span id="lallyBar"></span></div>
+      <div class="small">Tadqiqotlarda yangi odat o‘rtacha taxminan 66 kunda avtomatlashgan (oraliq 18–254 kun). Bir kunni o‘tkazib yuborish jarayonni buzmaydi.</div>
+    </div>
+    <details open><summary>Maslou ehtiyojlar ierarxiyasi (A. Maslow)</summary><ul>
+      <li>Ehtiyojlar pog‘onalar bilan tasvirlanadi: fiziologik, xavfsizlik, ijtimoiy aloqa, hurmat va o‘zini namoyon qilish.</li>
+      <li>Ilovada: uyqu, suv va harakat poydevor hisoblanadi; ularsiz yuqori maqsadlarga energiya qolmaydi.</li></ul></details>
+    <details><summary>O‘z-o‘zini belgilash nazariyasi (Deci va Ryan)</summary><ul>
+      <li>Ichki motivatsiya uch ehtiyojga tayanadi: erkinlik (o‘zim tanlayman), kompetentlik (uddalayapman) va bog‘liqlik (yolg‘iz emasman).</li>
+      <li>Ilovada: odatni o‘zingiz tanlang, kichik g‘alabalarni belgilang, mas’uliyat sherigi toping.</li></ul></details>
+    <details><summary>Fogg xulq modeli (B. J. Fogg)</summary><ul>
+      <li>Xulq motivatsiya, qobiliyat va ishora bir vaqtda uchrashganda yuz beradi.</li>
+      <li>Motivatsiya o‘zgaruvchan, shuning uchun odatni osonlashtirish ko‘pincha samaraliroq.</li></ul></details>
+    <details><summary>O‘zgarish bosqichlari (Prochaska va DiClemente)</summary><ul>
+      <li>O‘zgarish bosqichma-bosqich o‘tadi: oldindan o‘ylamaslik, o‘ylash, tayyorgarlik, harakat, saqlash.</li>
+      <li>Har bosqichga o‘z yondashuv kerak; qaytib tushish jarayonning odatiy qismi.</li></ul></details>
+    <details><summary>Niyat bayonlari (P. Gollwitzer)</summary><ul>
+      <li>«Agar [vaziyat] bo‘lsa, [harakat] qilaman» shaklidagi reja niyatni bajarilishga yaqinlashtiradi.</li>
+      <li>Ilovada: Kitob bo‘limidagi Odat quruvchi aynan shu usulga asoslangan.</li></ul></details>
+    <details><summary>O‘sish tafakkuri (C. Dweck)</summary><ul>
+      <li>Qobiliyat mashq bilan rivojlanadi degan ishonch qiyinchiliklarda barqarorlikni oshiradi.</li>
+      <li>«Bilmayman» o‘rniga «hali bilmayman» deb ayting; xatoni ma’lumot sifatida ko‘ring.</li></ul></details>
+    <details><summary>Oqim holati (M. Csikszentmihalyi)</summary><ul>
+      <li>Vazifa qiyinligi ko‘nikmangizga mos kelganda ishga to‘liq sho‘ng‘ish mumkin: juda oson zeriktiradi, juda qiyin xavotir beradi.</li>
+      <li>Ilovada: mashqni asta-sekin murakkablashtiring.</li></ul></details>
+    <details><summary>Operant o‘rganish (B. F. Skinner)</summary><ul>
+      <li>Mukofotlangan xulq takrorlanishga moyil bo‘ladi, ayniqsa mukofot tez kelganda.</li>
+      <li>Ilovada: belgilash ovozi, foiz va 🔥 seriya darhol qayta aloqa beradi.</li></ul></details>
+    <div class="card-head" style="margin:18px 0 10px"><h3>🧪 Fogg diagnostikasi</h3><span class="small">Odatim nega ishlamayapti?</span></div>
+    <div class="box">
+      <label class="small" for="fM">Motivatsiya: <b id="fMv">5</b>/10</label>
+      <input type="range" id="fM" min="1" max="10" value="5" style="width:100%">
+      <label class="small" for="fA">Qulaylik (osonlik): <b id="fAv">5</b>/10</label>
+      <input type="range" id="fA" min="1" max="10" value="5" style="width:100%">
+      <div class="advice" id="fOut" style="margin-top:10px"></div>
+    </div>
+    <div class="card-head" style="margin:18px 0 10px"><h3>🧭 O‘zgarish bosqichim</h3></div>
+    <div class="box">
+      <select id="stageSel" aria-label="O‘zgarish bosqichi"><option value="0">Hali o‘ylamayapman</option><option value="1">O‘ylayapman</option><option value="2">Tayyorgarlik ko‘ryapman</option><option value="3">Harakat qilyapman</option><option value="4">Odatni saqlayapman</option></select>
+      <div class="advice" id="stageOut" style="margin-top:10px"></div>
+    </div>
+  </section>
+
+  <footer class="footer">DailyFit AI · Atom Odatlar Asosida</footer>
+</main>
+
+<nav class="bottom-nav">
+  <button data-tab="all" class="active"><span>⌂</span>Asosiy</button>
+  <button data-tab="habits"><span>✓</span>Odatlar</button>
+  <button data-tab="workouts"><span>♧</span>Mashq</button>
+  <button data-tab="tools"><span>⚙</span>Asboblar</button>
+  <button data-tab="advisor"><span>✧</span>AI</button>
+  <button data-tab="book"><span>📖</span>Kitob</button>
+  <button data-tab="psych"><span>🧠</span>Psixo</button>
+</nav>
+
+<div class="modal" id="profileModal">
+  <div class="modal-box">
+    <h3>Shaxsiy Profil</h3>
+    <p class="small" style="margin:8px 0 16px">Sizning shaxsiy intizom va atom odatlar kabinetingiz.</p>
+    <div class="box" style="margin-bottom:14px">
+      <b>Foydalanuvchi:</b> Faol o‘quvchi<br>
+      <b>Daraja:</b> 1% kunlik o‘sish<br>
+      <b>Seriya:</b> <span id="profStreak">0</span> kun
+    </div>
+    <button class="primary" style="width:100%" id="closeProfile">Yopish</button>
+  </div>
+</div>
+<div class="modal" id="alarmModal"><div class="modal-box" style="text-align:center"><h3>⏰ Uyg‘oning!</h3><p class="small" style="margin:8px 0 16px">Yangi kun boshlandi. Birinchi atom odatni bajaring.</p><button class="primary" style="width:100%;margin-bottom:8px" id="alarmAdd">＋ Kunlik vazifa qo‘shish</button><button class="secondary" style="width:100%" id="stopAlarm">Uyg‘ondim ☀️</button></div></div>
+<div class="toast" id="toast" role="status"></div>
+
+<script>
+const KEY = 'dailyfit-atomic-v3';
+const defaults = {
+  habits: [
+    ['Mobil telefonsiz tong', 'Uyg‘ongach 30 min telefonni ochmaslik (Aniq qoida)', '🌅'],
+    ['1% yaxshilanish', 'Bugun bitta yangi foydali bilim olish', '📈'],
+    ['Minnatdorchilik', '3 ta yaxshi narsa uchun shukr qilish', '📓'],
+    ['Erta yotish', 'Belgilangan vaqtda uxlashga tayyorgarlik', '🌙']
+  ],
+  workouts: [
+    ['Stulda cho‘zilish', '2 daqiqalik tana harakati (Oson qoida)', '🧘'],
+    ['Faol yurish', '15 daqiqa toza havoda yurish', '🚶'],
+    ['Kuch mashqi', '10 ta otjimaniya yoki press', '💪']
+  ]
+};
+const quotes = [
+  'Siz maqsadlaringiz darajasiga emas, tizimingiz darajasiga tushasiz.',
+  'Har bir harakatingiz istagan insoningiz uchun ovoz berishdir.',
+  'Odatlarni o‘zgartirishning eng yaxshi usuli — kim bo‘lishni xohlayotganingizga e’tibor qaratishdir.',
+  'Kichik odatlar qo‘shilib katta natijalarni keltirib chiqaradi.'
+];
+const $ = id => document.getElementById(id);
+const todayKey = () => { const d = new Date(); return d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0') + '-' + String(d.getDate()).padStart(2, '0'); };
+const fresh = () => ({
+  date: todayKey(), streak: 0, lastFull: '',
+  habits: defaults.habits.map(x => ({title: x[0], detail: x[1], icon: x[2], done: false})),
+  workouts: defaults.workouts.map(x => ({title: x[0], detail: x[1], icon: x[2], done: false})),
+  water: 0, tasks: [], sleep: 7, mood: 'Yaxshi ⚡'
+});
+const valid = s => s && typeof s === 'object' && Array.isArray(s.habits) && Array.isArray(s.workouts) && Array.isArray(s.tasks);
+
+let state;
+try { state = JSON.parse(localStorage.getItem(KEY)); } catch (e) { state = null; }
+if (!valid(state)) state = fresh();
+
+// Yangi kun: seriyani hisoblash va kunlik holatni tozalash
+function rollover() {
+  const t = todayKey();
+  if (state.date === t) return;
+  const full = state.habits.length && state.habits.every(h => h.done);
+  const y = new Date(); y.setDate(y.getDate() - 1);
+  const yKey = y.getFullYear() + '-' + String(y.getMonth() + 1).padStart(2, '0') + '-' + String(y.getDate()).padStart(2, '0');
+  if (full && state.date === yKey) { state.streak++; state.lastFull = state.date; }
+  else if (full) { state.streak = 1; state.lastFull = state.date; }
+  else state.streak = 0;
+  state.habits.forEach(h => h.done = false);
+  state.workouts.forEach(w => w.done = false);
+  state.tasks = state.tasks.filter(x => x.daily || !x.done); state.tasks.forEach(x => x.done = false);
+  state.water = 0;
+  state.date = t;
+}
+rollover();
+
+function save() {
+  try { localStorage.setItem(KEY, JSON.stringify(state)); } catch (e) { toast('Saqlab bo‘lmadi'); }
+  render();
+}
+let toastTimer;
+function toast(t) {
+  const el = $('toast'); el.textContent = t; el.style.display = 'block';
+  clearTimeout(toastTimer); toastTimer = setTimeout(() => el.style.display = 'none', 1800);
+}
+function esc(s) {
+  return String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+}
+function listHTML(items, type) {
+  if (!items.length) return '<div class="empty">Hozircha vazifa yo‘q. Yangisini qo‘shing.</div>';
+  return items.map((x, i) => `
+    <div class="item">
+      <button class="check ${x.done ? 'done' : ''}" data-type="${type}" data-i="${i}" aria-label="Bajarildi deb belgilash" aria-pressed="${!!x.done}">${x.done ? '✓' : ''}</button>
+      <div class="item-main">
+        <b style="${x.done ? 'text-decoration:line-through;opacity:.65' : ''}">${esc(x.title)}</b>
+        <small>${esc(x.detail)}</small>
+      </div>
+      ${(type === 'tasks' || x.custom) ? `<button class="del" data-del="${i}" data-dtype="${type}" aria-label="O‘chirish">✕</button>` : `<span class="tag">${esc(x.icon)}</span>`}
+    </div>`).join('');
+}
+const pct = (a, b) => b ? Math.round(a / b * 100) : 0;
+
+function render() {
+  $('habits').innerHTML = listHTML(state.habits, 'habits');
+  $('workouts').innerHTML = listHTML(state.workouts, 'workouts');
+  $('tasks').innerHTML = listHTML(state.tasks, 'tasks');
+  const hd = state.habits.filter(x => x.done).length;
+  const wd = state.workouts.filter(x => x.done).length;
+  const td = state.tasks.filter(x => x.done).length;
+  const total = state.habits.length + state.workouts.length + state.tasks.length;
+  $('habitStat').textContent = hd + '/' + state.habits.length;
+  $('workStat').textContent = wd + '/' + state.workouts.length;
+  $('waterStat').textContent = state.water;
+  $('percentStat').textContent = pct(hd + wd + td, total) + '%';
+  $('habitCount').textContent = hd + ' / ' + state.habits.length;
+  $('workCount').textContent = wd + ' / ' + state.workouts.length;
+  $('habitProgress').style.width = pct(hd, state.habits.length) + '%';
+  $('workProgress').style.width = pct(wd, state.workouts.length) + '%';
+  $('waterText').textContent = state.water + ' stakan';
+  $('waterProgress').style.width = Math.min(100, state.water / 8 * 100) + '%';
+  $('waterMinus').disabled = state.water <= 0;
+  const L = (state.sleepLog || []).slice(-7);
+  $('sleepInfo').textContent = 'Oxirgi qayd: ' + state.sleep + ' soat' + (state.sleep < 6 ? ' · kam, 7–9 soat tavsiya etiladi' : '');
+  $('sleepHist').textContent = L.length ? 'Oxirgi kunlar: ' + L.map(x => x.h).join(' · ') : '';
+  $('moodSelect').value = state.mood;
+  const s = state.streak + (state.habits.length && hd === state.habits.length ? 1 : 0);
+  $('streak').textContent = '🔥 ' + s + ' kun';
+  $('profStreak').textContent = s;
+  psyUI();
+}
+
+$('today').textContent = new Date().toLocaleDateString('uz-UZ', {weekday: 'short', day: 'numeric', month: 'long'});
+
+// Belgilash va o‘chirish (event delegation)
+document.addEventListener('click', e => {
+  const c = e.target.closest('.check');
+  if (c) { const x = state[c.dataset.type][+c.dataset.i]; if (x) { x.done = !x.done; if (x.done) sfx.ok(); save(); } return; }
+  const d = e.target.closest('[data-del]');
+  if (d) { state[d.dataset.dtype].splice(+d.dataset.del, 1); sfx.del(); save(); }
+});
+
+$('waterPlus').onclick = () => { state.water = Math.min(30, state.water + 1); sfx.water(); save(); };
+$('waterMinus').onclick = () => { state.water = Math.max(0, state.water - 1); save(); };
+
+$('taskForm').onsubmit = e => {
+  e.preventDefault();
+  const v = $('taskInput').value.trim();
+  if (!v) return;
+  const daily = $('taskDaily').checked;
+  state.tasks.push({title: v, detail: daily ? 'Har kuni takrorlanadi' : '2 daqiqalik vazifa', icon: daily ? '🔁' : '✦', done: false, daily});
+  $('taskInput').value = '';
+  sfx.add(); save(); toast('Vazifa qo‘shildi');
+};
+
+$('saveSleep').onclick = () => {
+  let val = parseFloat($('sleepInput').value);
+  if (isNaN(val)) {
+    const [bh, bm] = $('bedT').value.split(':').map(Number), [wh, wm] = $('wakeT').value.split(':').map(Number);
+    if (![bh, bm, wh, wm].some(isNaN)) val = Math.round(((wh * 60 + wm - bh * 60 - bm + 1440) % 1440) / 6) / 10;
+  }
+  if (isNaN(val) || val < 0 || val > 14) return toast('0 dan 14 gacha kiriting');
+  state.sleep = val; $('sleepInput').value = '';
+  state.sleepLog = (state.sleepLog || []).filter(x => x.d !== todayKey()).concat({d: todayKey(), h: val}).slice(-7);
+  sfx.add(); save(); toast('Uyqu saqlandi: ' + val + ' soat');
+};
+$('moodSelect').onchange = e => { state.mood = e.target.value; save(); toast('Kayfiyat yangilandi'); };
+
+$('quoteText').textContent = '“' + quotes[0] + '”';
+$('newQuote').onclick = () => { $('quoteText').textContent = '“' + quotes[Math.floor(Math.random() * quotes.length)] + '”'; };
+
+let breathTimers = [];
+$('startBreath').onclick = () => {
+  breathTimers.forEach(clearTimeout);
+  const t = $('breathText');
+  t.textContent = 'Nafas oling... (4 soniya)';
+  breathTimers = [
+    setTimeout(() => t.textContent = 'Ushlab turing... (7 soniya)', 4000),
+    setTimeout(() => t.textContent = 'Sekin chiqaring... (8 soniya)', 11000),
+    setTimeout(() => t.textContent = 'Ajoyib! Tinchlandingiz.', 19000)
+  ];
+};
+
+$('askForm').onsubmit = e => {
+  e.preventDefault();
+  const q = $('askInput').value.toLowerCase();
+  const ans = q.includes('odat') ? 'Uni aniq qiling, jozibali qiling, oson qiling va qoniqarli qiling.'
+    : q.includes('suv') ? 'Ko‘zingiz tushadigan joyga stakan qo‘ying (vizual ishora).'
+    : q.includes('uyqu') ? 'Har kuni bir xil vaqtda yoting va yotishdan oldin telefonni uzoqroqqa qo‘ying.'
+    : 'Kichik 1% qadamdan boshlang. 2 daqiqalik qoidani qo‘llang!';
+  $('answer').textContent = 'AI maslahat: ' + ans;
+  $('askInput').value = '';
+};
+
+// Ma’lumotlarni eksport / import / tozalash
+$('exportBtn').onclick = () => {
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(new Blob([JSON.stringify(state, null, 2)], {type: 'application/json'}));
+  a.download = 'dailyfit-' + todayKey() + '.json';
+  a.click(); URL.revokeObjectURL(a.href);
+};
+$('importBtn').onclick = () => $('importFile').click();
+$('importFile').onchange = e => {
+  const f = e.target.files[0]; if (!f) return;
+  const r = new FileReader();
+  r.onload = () => {
+    try { const s = JSON.parse(r.result); if (!valid(s)) throw 0; state = s; rollover(); save(); toast('Import qilindi'); }
+    catch (err) { toast('Fayl noto‘g‘ri formatda'); }
+  };
+  r.readAsText(f); e.target.value = '';
+};
+$('resetBtn').onclick = () => { if (confirm('Barcha ma’lumotlar o‘chiriladi. Davom etasizmi?')) { state = fresh(); save(); toast('Tozalandi'); } };
+
+// Bo‘limlar
+function showTab(t) {
+  document.querySelectorAll('[data-tab]').forEach(x => x.classList.toggle('active', x.dataset.tab === t));
+  document.querySelectorAll('[data-sec]').forEach(c => c.style.display = (t === 'all' || c.dataset.sec === t) ? '' : 'none');
+  window.scrollTo({top: 0, behavior: 'smooth'});
+}
+document.querySelectorAll('[data-tab]').forEach(b => b.onclick = () => showTab(b.dataset.tab));
+
+// Kitob: odat quruvchi va shaxsiyat
+const bv = id => $(id).value.trim();
+function bSentence() {
+  const act = bv('bAct'); if (!act) return '';
+  const after = bv('bAfter');
+  const cue = after ? after + ' tugagach' : [bv('bWhen'), bv('bWhere')].filter(Boolean).join(', ');
+  return (cue ? cue + ': ' : '') + act;
+}
+['bAct', 'bWhen', 'bWhere', 'bAfter'].forEach(i => $(i).oninput = () => $('bPreview').textContent = bSentence());
+$('bAdd').onclick = () => {
+  const s = bSentence(); if (!s) return toast('Avval odatni yozing');
+  state.habits.push({title: bv('bAct'), detail: s, icon: '⚡', done: false, custom: true});
+  ['bAct', 'bWhen', 'bWhere', 'bAfter'].forEach(i => $(i).value = '');
+  $('bPreview').textContent = ''; save(); toast('Odat qo‘shildi');
+};
+function showId() { $('idOut').textContent = state.identity ? 'Har bir bajarilgan odat «' + state.identity + '» bo‘lishga bitta ovoz.' : ''; }
+$('identity').value = state.identity || '';
+$('saveId').onclick = () => { state.identity = bv('identity'); save(); showId(); toast('Saqlandi'); };
+showId();
+
+// Ovoz effektlari
+let ac;
+function beep(f = 660, d = .12, t = 'sine', v = .15, force) {
+  if (state.sound === false && !force) return;
+  try {
+    ac = ac || new (window.AudioContext || window.webkitAudioContext)();
+    if (ac.state === 'suspended') ac.resume();
+    const o = ac.createOscillator(), g = ac.createGain();
+    o.type = t; o.frequency.value = f; g.gain.value = v;
+    o.connect(g); g.connect(ac.destination); o.start();
+    g.gain.exponentialRampToValueAtTime(.001, ac.currentTime + d); o.stop(ac.currentTime + d);
+  } catch (e) {}
+}
+const sfx = {ok: () => { beep(660); setTimeout(() => beep(880), 90); }, add: () => beep(520, .1), water: () => beep(420, .15, 'triangle'), del: () => beep(250, .12, 'square', .08)};
+const snd = () => $('soundBtn').textContent = state.sound === false ? '🔇' : '🔊';
+$('soundBtn').onclick = () => { state.sound = state.sound === false; save(); snd(); beep(660); };
+snd();
+
+// Uyg‘otgich
+state.alarm = state.alarm || {on: true, t: '06:00'};
+let ringT, lastRing = '';
+function stopRing() { clearInterval(ringT); $('alarmModal').style.display = 'none'; }
+function ring() {
+  $('alarmModal').style.display = 'grid';
+  let n = 0; clearInterval(ringT);
+  ringT = setInterval(() => { beep(n++ % 2 ? 660 : 880, .35, 'square', .2, true); try { navigator.vibrate && navigator.vibrate(300); } catch (e) {} }, 600);
+  try { if ('Notification' in window && Notification.permission === 'granted') new Notification('⏰ Uyg‘oning!', {body: 'Yangi kun boshlandi. Birinchi odatni bajaring.'}); } catch (e) {}
+}
+function alarmUI() {
+  $('alarmT').value = state.alarm.t;
+  $('alarmOn').textContent = state.alarm.on ? 'O‘chirish' : 'Yoqish';
+  $('alarmInfo').textContent = state.alarm.on ? 'Yoqilgan: ' + state.alarm.t : 'O‘chirilgan';
+}
+$('alarmOn').onclick = () => {
+  state.alarm.t = $('alarmT').value || '06:00';
+  state.alarm.on = !state.alarm.on;
+  if (state.alarm.on) { beep(700, .1, 'sine', .15, true); try { Notification.requestPermission(); } catch (e) {} }
+  save(); alarmUI(); toast(state.alarm.on ? 'Uyg‘otgich yoqildi: ' + state.alarm.t : 'Uyg‘otgich o‘chirildi');
+};
+$('stopAlarm').onclick = stopRing;
+$('alarmAdd').onclick = () => { stopRing(); showTab('habits'); setTimeout(() => $('taskInput').focus(), 400); };
+setInterval(() => {
+  if (!state.alarm.on) return;
+  const d = new Date(), hm = String(d.getHours()).padStart(2, '0') + ':' + String(d.getMinutes()).padStart(2, '0'), k = todayKey() + hm;
+  if (hm === state.alarm.t && lastRing !== k) { lastRing = k; rollover(); save(); ring(); }
+}, 1000);
+alarmUI();
+
+// Psixologiya
+function psyUI() {
+  state.start = state.start || todayKey();
+  const n = Math.max(1, Math.floor((new Date(todayKey()) - new Date(state.start)) / 864e5) + 1);
+  $('lallyTxt').textContent = n + '-kun / 66';
+  $('lallyBar').style.width = Math.min(100, n / 66 * 100) + '%';
+}
+function foggUI() {
+  const m = +$('fM').value, a = +$('fA').value;
+  $('fMv').textContent = m; $('fAv').textContent = a;
+  $('fOut').textContent = a <= 4 ? 'Odat hozir qiyin. Uni 2 daqiqalik versiyaga qisqartiring va yo‘lni osonlashtiring; motivatsiyaga tayanmang.'
+    : (m <= 4 ? 'Odat oson, lekin motivatsiya past. Uni yoqtirgan ish bilan bog‘lang va tezkor mukofot qo‘shing.'
+    : (m >= 7 && a >= 7 ? 'Yaxshi holat. Aniq vaqt va joy belgilang va bugunoq bajaring.'
+    : 'O‘rtacha holat. Ishorani aniqlashtiring va birinchi qadamni yengillashtiring.'));
+}
+const stageTips = [
+  'Kichik qiziqish uyg‘oting: bitta foydali odat nimaga olib kelishini yozib chiqing.',
+  'Foyda va to‘siqlarni yozing, so‘ng eng kichik sinov qadamini tanlang.',
+  'Niyat bayonini yozing, muhitni tayyorlang va boshlanish sanasini belgilang.',
+  'Seriyani saqlang, 2 daqiqa qoidasidan foydalaning, ketma-ket ikki marta o‘tkazib yubormang.',
+  'Qaytib tushish xavfini oldindan rejalang va odatni yangi shaxsiyatingiz bilan bog‘lang.'
+];
+function stageUI() { $('stageSel').value = state.stage || 0; $('stageOut').textContent = stageTips[+$('stageSel').value]; }
+$('fM').oninput = $('fA').oninput = foggUI;
+$('stageSel').onchange = e => { state.stage = +e.target.value; save(); stageUI(); };
+foggUI(); stageUI();
+
+// Profil oynasi
+const modal = $('profileModal');
+$('openProfile').onclick = () => modal.style.display = 'grid';
+$('closeProfile').onclick = () => modal.style.display = 'none';
+modal.onclick = e => { if (e.target === modal) modal.style.display = 'none'; };
+document.addEventListener('keydown', e => { if (e.key === 'Escape') modal.style.display = 'none'; });
+
+render();
+</script>
+</body>
+</html>
